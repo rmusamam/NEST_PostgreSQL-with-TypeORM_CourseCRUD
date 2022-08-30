@@ -1,9 +1,12 @@
-import { Column, Entity,  PrimaryGeneratedColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity,  PrimaryGeneratedColumn } from "typeorm";
 
 @Entity('course')
 export class Course {
     @PrimaryGeneratedColumn()
     id:number
+
+    @Column({type:"uuid"})
+    uuid:uuid
 
     @Column('text')
     course_name:string
@@ -11,24 +14,24 @@ export class Course {
     @Column('text')
     description:string
 
-    @Column('date')
+    @CreateDateColumn({type:'timestamp'})
     starting_date:Date
 
-    @Column('date')
+    @CreateDateColumn()
     ending_date:Date
 
     @Column('boolean')
     record_status:boolean
 
-    @Column('date')
+    @CreateDateColumn()
     created_at:Date
 
     @Column('text')
     created_by:string
 
-    @Column('date')
+    @CreateDateColumn()
     updated_at:Date
 
-    @Column('date')
+    @CreateDateColumn()
     deleted_at:Date
 }
