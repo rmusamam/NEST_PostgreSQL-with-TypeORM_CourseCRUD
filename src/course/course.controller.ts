@@ -14,25 +14,25 @@ export class CourseController {
     return this.courseService.create(createCourseDto);
   }
 
-  @Get('findAll')
+  @Get('')
   findAll() {
     return this.courseService.findAll();
   }
 
-  @Get('findById/:id')
+  @Get('/:id')
   findOne(@Param('id') id: uuidv4) {
     console.log('this is controller',id);
     
     return this.courseService.findOne(id);
   }
 
-  @Patch('updateById/:id')
-  update(@Param('id') id: string, @Body() updateCourseDto: UpdateCourseDto) {
+  @Patch(':id')
+  update(@Param('id') id: number, @Body() updateCourseDto: UpdateCourseDto) {
     return this.courseService.update(id, updateCourseDto);
   }
 
-  // @Delete(':id')
-  // remove(@Param('id') id: string) {
-  //   return this.courseService.remove(+id);
-  // }
+  @Delete('delete/:id',)
+  remove(@Param('id') id: number) {
+    return this.courseService.remove(+id);
+  }
 }

@@ -9,4 +9,6 @@ export class UpdateCourseDto extends PartialType(CreateCourseDto) {
     record_status:boolean
 
     created_by:string
+
+    updated_at:Date
 }

@@ -19,7 +19,7 @@ export class Course {
     @CreateDateColumn({type:'timestamp'})
     starting_date:Date
 
-    @CreateDateColumn()
+    @Column()
     ending_date:Date
 
     @Column('boolean')
@@ -31,9 +31,9 @@ export class Course {
     @Column('text')
     created_by:string
 
-    @CreateDateColumn()
+    @Column()
     updated_at:Date
 
-    @CreateDateColumn()
+    @Column()
     deleted_at:Date
 }

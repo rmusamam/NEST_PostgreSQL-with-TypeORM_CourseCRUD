@@ -5,6 +5,7 @@ import { UpdateCourseDto } from './dto/update-course.dto';
 import { Course } from './entities/course.entity';
 import { Repository } from 'typeorm';
 import { v4 as uuidv4 } from 'uuid';
+import { DeleteCourseDto } from './dto/delete-course.dto';
 
 
 
@@ -29,18 +30,22 @@ export class CourseService {
     return this.courseRepository.findOneBy({ uuid:id });
   }
 
-  async update(id: string, updateCourseDto: UpdateCourseDto) {
-    console.log('this is DTO',updateCourseDto);
+  async update(id: number, updateCourseDto: UpdateCourseDto) {
+    
+      var date = new Date()
+   updateCourseDto.updated_at=date
 
-    const updateCourse = await this.courseRepository.update({created_by:id}, {
-      course_name: updateCourseDto.course_name
-    });
+    const updateCourse = await this.courseRepository.update({id},updateCourseDto  
+    );
     console.log('this is query',updateCourse)
 
     return `This is updated data #${id} `;
   }
 
-  // remove(id: number) {
-  //   return `This action removes a #${id} course`;
-  // }
+  async remove(id: number) {
+
+    const deleteCourse = await this.courseRepository.delete(id);    
+    return `This action removes a record  where id is : #${id} 
+    and deleted record is : ${deleteCourse}`;
+  }
 }
