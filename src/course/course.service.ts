@@ -17,7 +17,6 @@ export class CourseService {
   
   create(createCourseDto: CreateCourseDto) {
     createCourseDto.uuid=uuidv4()
-    console.log(typeof createCourseDto.uuid)
     return this.courseRepository.save(createCourseDto);
   }
 
@@ -25,13 +24,14 @@ export class CourseService {
     return this.courseRepository.find();
   }
 
-  // findOne(id: number) {
-  //   return `This action returns a #${id} course`;
-  // }
+  
+  findOne(id: uuidv4): Promise<Course> {
+    return this.courseRepository.findOneBy({ uuid:id });
+  }
 
-  // update(id: number, updateCourseDto: UpdateCourseDto) {
-  //   return `This action updates a #${id} course`;
-  // }
+  update(id: number, updateCourseDto: UpdateCourseDto) {
+    return `This action updates a #${id} course`;
+  }
 
   // remove(id: number) {
   //   return `This action removes a #${id} course`;

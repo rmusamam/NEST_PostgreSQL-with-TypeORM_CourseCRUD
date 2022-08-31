@@ -1,4 +1,6 @@
 import { Column, CreateDateColumn, Entity,  PrimaryGeneratedColumn } from "typeorm";
+import { v4 as uuidv4 } from 'uuid';
+
 
 @Entity('course')
 export class Course {
@@ -6,7 +8,7 @@ export class Course {
     id:number
 
     @Column({type:"uuid"})
-    uuid:uuid
+    uuid:uuidv4
 
     @Column('text')
     course_name:string
@@ -17,7 +19,7 @@ export class Course {
     @CreateDateColumn({type:'timestamp'})
     starting_date:Date
 
-    @CreateDateColumn()
+    @Column()
     ending_date:Date
 
     @Column('boolean')
@@ -29,9 +31,9 @@ export class Course {
     @Column('text')
     created_by:string
 
-    @CreateDateColumn()
+    @Column()
     updated_at:Date
 
-    @CreateDateColumn()
+    @Column()
     deleted_at:Date
 }

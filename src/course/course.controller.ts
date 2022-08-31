@@ -2,6 +2,8 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { CourseService } from './course.service';
 import { CreateCourseDto } from './dto/create-course.dto';
 import { UpdateCourseDto } from './dto/update-course.dto';
+import { v4 as uuidv4 } from 'uuid';
+
 
 @Controller('course')
 export class CourseController {
@@ -17,10 +19,12 @@ export class CourseController {
     return this.courseService.findAll();
   }
 
-  // @Get(':id')
-  // findOne(@Param('id') id: string) {
-  //   return this.courseService.findOne(+id);
-  // }
+  @Get('findById/:id')
+  findOne(@Param('id') id: uuidv4) {
+    console.log('this is controller',id);
+    
+    return this.courseService.findOne(id);
+  }
 
   // @Patch(':id')
   // update(@Param('id') id: string, @Body() updateCourseDto: UpdateCourseDto) {
