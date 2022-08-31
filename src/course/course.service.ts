@@ -29,8 +29,15 @@ export class CourseService {
     return this.courseRepository.findOneBy({ uuid:id });
   }
 
-  update(id: number, updateCourseDto: UpdateCourseDto) {
-    return `This action updates a #${id} course`;
+  async update(id: string, updateCourseDto: UpdateCourseDto) {
+    console.log('this is DTO',updateCourseDto);
+
+    const updateCourse = await this.courseRepository.update({created_by:id}, {
+      course_name: updateCourseDto.course_name
+    });
+    console.log('this is query',updateCourse)
+
+    return `This is updated data #${id} `;
   }
 
   // remove(id: number) {
